@@ -15,6 +15,9 @@ import { FcMultipleInputs } from 'react-icons/fc'
 import { AiOutlineQuestionCircle } from 'react-icons/ai'
 import { TbMessageCircle2 } from 'react-icons/tb'
 import { HiBars3 } from 'react-icons/hi2'
+import { AiOutlineLaptop } from 'react-icons/ai'
+import { CiApple } from 'react-icons/ci'
+import { MdOutlineChair } from 'react-icons/md'
 
 import { Link } from 'react-router-dom'
 
@@ -104,7 +107,7 @@ const Navbar = () => {
           </div>
           <span><GoLocation /> Sacramento, 95829 <BsHouseDoor /> Sacramento Supercenter</span>
 
-          <div className={navStyle.delivery__dropdown} style={delivery ? { display: "none" } : { display: "block" }}>
+          <div className={navStyle.delivery__dropdown} style={delivery ? { display: "block" } : { display: "none" }}>
             <div className={navStyle.delivery__dropdown__top}>
               <div>
                 <img src="https://i5.walmartimages.com/dfw/4ff9c6c9-486e/k2-_4be6f532-b0b2-4480-bb65-d53586e87193.v1.png" alt="" />
@@ -154,12 +157,16 @@ const Navbar = () => {
           <ul>
             <li>
               <img src="https://i5.walmartimages.com/dfw/63fd9f59-ac39/29c6759d-7f14-49fa-bd3a-b870eb4fb8fb/v1/wplus-icon-blue.svg" alt="" />
-              <span>Walmart+</span>
+              <Link to="/walmart+"><span>Walmart+</span></Link>
             </li>
             <hr />
             <li><TfiReceipt /> <span>Purchase History</span></li>
-            <li><FcMultipleInputs /><span>My Items</span></li>
-            <li><FaRegUser /><span>Account</span></li>
+            <li><FcMultipleInputs /><Link to="/wishlist"><span>My Items</span></Link></li>
+            <li><FaRegUser /><Link to="/login"><span>Account</span></Link></li>
+            <hr />
+              <li><AiOutlineLaptop/><Link to="/tech"><span>Tech</span></Link></li>
+              <li><CiApple/><Link to="/grocery"><span>Grocery</span></Link></li>
+              <li><MdOutlineChair/><Link to="/home"><span>Home</span></Link></li>
             <hr />
             <li><AiOutlineQuestionCircle /><span>Help</span></li>
             <hr />

@@ -1,8 +1,18 @@
 import React from 'react'
+import { Helmet, HelmetProvider } from 'react-helmet-async';
+
 
 const Wishlist = () => {
   return (
-    <div>Wishlist</div>
+    <>
+      <HelmetProvider>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>Wishlist</title>
+        </Helmet>
+      </HelmetProvider>
+      <div>Wishlist</div>
+    </>
   )
 }
 

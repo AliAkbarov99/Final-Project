@@ -1,11 +1,19 @@
 import React from 'react'
-import './Tech.css'
+import techStyle from './Tech.module.scss'
+import { Helmet, HelmetProvider } from 'react-helmet-async';
+
 
 const Tech = () => {
   return (
 
     <>
-    <div id='tech'>Tech</div>
+      <HelmetProvider>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>Technologies</title>
+        </Helmet>
+      </HelmetProvider>
+      <div id='tech'>Tech</div>
     </>
   )
 }
