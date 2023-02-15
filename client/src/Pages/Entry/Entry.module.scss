@@ -1,8 +1,12 @@
 .container {
-    width: 1280px;
+    width: 67%;
     margin: auto;
     background-color: white;
     padding: 24px;
+
+    @media(max-width: 520px){
+        width: 85%;
+    }
 }
 
 .entry {
@@ -10,6 +14,9 @@
 
     .entry__reserve {
         display: flex;
+        justify-content: center;
+        gap: 24px;
+        flex-wrap: wrap;
 
         .entry__reserve__left {
             .entry__reserve__left__top {
@@ -93,7 +100,6 @@
             border-radius: 8px;
             box-shadow: 0 1px 2px 1px #00000026;
             padding: 16px;
-            margin-left: 24px;
             width: 394px;
 
             div {
@@ -123,7 +129,6 @@
             border-radius: 8px;
             box-shadow: 0 1px 2px 1px #00000026;
             padding: 16px;
-            margin-left: 24px;
             width: 394px;
             padding-bottom: 25px;
 
@@ -144,6 +149,110 @@
                     }
                     
                 }
+            }
+        }
+    }
+
+    .entry__walmartplus{
+        cursor: pointer;
+        background-image: url("https://i5.walmartimages.com/dfw/63fd9f59-ac39/29c6759d-7f14-49fa-bd3a-b870eb4fb8fb/v1/wplus-bg-dweb.svg");
+        background-repeat: no-repeat;
+        height: 48px;
+        width: 99.6%;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 5px;
+        border-radius: 8px;
+
+        p{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            font-weight: 700;
+            color: white;
+            font-size: 14px;
+            @media(max-width: 768px){
+                font-size: 10px;
+            }
+            @media(max-width: 425px){
+                font-size: 8px;
+            }
+            img{
+                width: 30px;
+                height: 30px;
+                margin-right: 16px;
+                @media(max-width: 768px){
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+            span{
+                text-decoration: underline;
+                font-weight: 400;
+                margin-left: 20px;
+                font-size: 15px;
+                cursor: pointer;
+                @media(max-width: 768px){
+                    font-size: 12px;
+                }
+                @media(max-width: 425px){
+                    font-size: 10px;
+                }
+            }
+        }
+    }
+
+    .entry__health__line{
+        background-color: #f1f1f2;
+        height: 1px;
+        width: 100%;
+        margin: 24px 0px;
+    }
+
+    .entry__health__container{
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 26px;
+        margin-top: 24px;
+
+        .entry__health__item{
+            box-shadow: 0 1px 2px 1px #00000026;
+            border-radius: 8px;
+            background-color: #fff;
+
+            h4{
+                padding: 16px 16px 8px 16px;
+            }
+
+            p{
+                color: #46474a;
+                font-size: 13px;
+                padding: 0px 16px;
+            }
+
+            button{
+                margin: 32px 0px 16px 16px;
+                font-size: 12px;
+                height: 32px;
+                padding: 0 16px;
+                border-radius: 15px;
+                background: #fff;
+                border: 1px solid black;
+                color: #2e2f32;
+                font-weight: 700;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                &:hover {
+                    color: white;
+                    background-color: #2e2f32;
+                }
+                
             }
         }
     }
