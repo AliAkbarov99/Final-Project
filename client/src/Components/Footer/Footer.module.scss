@@ -1,0 +1,33 @@
+.footer{
+    background-color: #004f9a;
+    color: white;
+    padding: 16px 310px;
+
+    @media (max-width: 1024px) {
+        padding: 16px 0px;
+    }
+    ul{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 36px;
+        @media (max-width: 1024px) {
+            flex-direction: column;
+            width: 60%;
+            margin:auto ;
+        }
+        @media (max-width: 425px) {
+            flex-direction: column;
+            
+        }
+        li{
+            list-style-type: none;
+            font-size: 13px;
+            cursor: pointer;
+        }
+    }
+    p{
+        font-size: 11px;
+        text-align: center;
+        margin-top: 40px;
+    }
+}

@@ -106,19 +106,25 @@ const Entry = () => {
                 <button>Shop now</button>
               </div>
               <div className={entryStyle.entry__health__item}>
-              <img src="https://i5.walmartimages.com/dfw/4ff9c6c9-f8d6/k2-_7f9ced9d-3ccf-4602-8a79-56f726caea64.v1.jpg?odnHeight=222&odnWidth=395&odnBg=FFFFFF" alt="" />
+                <img src="https://i5.walmartimages.com/dfw/4ff9c6c9-f8d6/k2-_7f9ced9d-3ccf-4602-8a79-56f726caea64.v1.jpg?odnHeight=222&odnWidth=395&odnBg=FFFFFF" alt="" />
                 <h4>At-home COVID-19 tests</h4>
                 <p>Now available at Walmart.</p>
                 <button>Schedule now</button>
               </div>
               <div className={entryStyle.entry__health__item}>
-              <img src="https://i5.walmartimages.com/dfw/4ff9c6c9-d7eb/k2-_feec3339-3120-45bf-9ce7-e1fad1c9eccd.v1.jpg?odnHeight=222&odnWidth=395&odnBg=FFFFFF" alt="" />
+                <img src="https://i5.walmartimages.com/dfw/4ff9c6c9-d7eb/k2-_feec3339-3120-45bf-9ce7-e1fad1c9eccd.v1.jpg?odnHeight=222&odnWidth=395&odnBg=FFFFFF" alt="" />
                 <h4>At-home COVID-19 tests</h4>
                 <p>Now available at Walmart.</p>
-                <button>Shop now</button></div>  
+                <button>Shop now</button></div>
             </div>
           </div>
+
+
         </div>
+      </div>
+      <div className={entryStyle.feedback}>
+        <p>We’d love to hear what you think!</p>
+        <button>Give feedback</button>
       </div>
     </>
   )
