@@ -35,8 +35,6 @@ const Navbar = () => {
       setSize(false)
     }
   }
-
-
   return (
     <div className={navStyle.navbar} id="navbar">
       <div className={navStyle.navbar__top}>
