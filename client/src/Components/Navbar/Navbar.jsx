@@ -143,7 +143,7 @@ const Navbar = () => {
           <Link to='/walmart+'>Walmart+</Link>
         </div>
       </div>
-
+      <div className={navStyle.sidebar__overlay} style={sidebar ? { display: "block" } : { display: "none" }} onClick={() => { setSidebar(false) }}></div>
       <div className={navStyle.navbar__sidebar} style={sidebar ? { visibility: "visible", opacity: "1", transform: "translateX(320px)" } : { visibility: "hidden", opacity: "0", transform: "translateX(0px)" }}>
         <div className={navStyle.navbar__sidebar__top}>
           <img src="https://seeklogo.com/images/W/walmart-spark-logo-57DC35C86C-seeklogo.com.png" alt="" onClick={() => {
@@ -162,9 +162,9 @@ const Navbar = () => {
             <li><FcMultipleInputs /><Link to="/wishlist"><span>My Items</span></Link></li>
             <li><FaRegUser /><Link to="/login"><span>Account</span></Link></li>
             <hr />
-              <li><AiOutlineLaptop/><Link to="/tech"><span>Tech</span></Link></li>
-              <li><CiApple/><Link to="/grocery"><span>Grocery</span></Link></li>
-              <li><MdOutlineChair/><Link to="/home"><span>Home</span></Link></li>
+            <li><AiOutlineLaptop /><Link to="/tech"><span>Tech</span></Link></li>
+            <li><CiApple /><Link to="/grocery"><span>Grocery</span></Link></li>
+            <li><MdOutlineChair /><Link to="/home"><span>Home</span></Link></li>
             <hr />
             <li><AiOutlineQuestionCircle /><span>Help</span></li>
             <hr />
