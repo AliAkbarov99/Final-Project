@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import basketStyle from './Basket.module.scss'
 import { Link } from 'react-router-dom'
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 
 const Basket = () => {
+
+  const [inpState,Setinpstate] = useState(0)
 
   const monthNames = [
     "January", "February", "March", "April", "May", "June",
@@ -53,7 +55,7 @@ const Basket = () => {
               </div>
               <div className={basketStyle.basket__main__products__bottom}>
                 <div className={basketStyle.basket__main__products__bottom__item}>
-                  <p style={{marginBottom:"20px",fontSize:"12px"}}>Sold and shipped by <strong>Walmart</strong></p>
+                  <p style={{marginBottom:"20px",fontSize:"12px",display:"flex",justifyContent:"space-between"}}>Sold and shipped by Walmart <span className={basketStyle.remove}>Remove</span></p>
                   <div className={basketStyle.basket__main__products__bottom__item__content}>
                     <div className={basketStyle.basket__main__products__bottom__item__left}>
                       <img src="https://i5.walmartimages.com/asr/52559c05-8ae0-4f9a-833e-e47f804f644a.ce427b265eceac9547366a33b2d54245.jpeg?odnHeight=96&odnWidth=96&odnBg=FFFFFF" alt="" />
@@ -63,37 +65,18 @@ const Basket = () => {
                       <span style={{fontWeight:"700"}}>$20.46</span>
                       <span><img src="https://i5.walmartimages.com/dfw/63fd9f59-e685/7e6c8c3a-3ba7-437a-a066-de3ad3a6a15a/v1/roundReturn.svg" alt="" />Free 90-day returns</span>
                       <span> <img src="https://i5.walmartimages.com/dfw/63fd9f59-fc02/1be09571-b0a8-4894-8001-e7a71e306c46/v1/gifting-icon.svg" alt="" /> Gift Eligible</span>
+                      <span><button onClick={()=>{
+                        if(inpState==0){
+                          return
+                        }
+                        Setinpstate(inpState-1)
+                      }}>-</button><input disabled type="number" value={inpState} /><button onClick={()=>{
+                        Setinpstate(inpState+1)
+                      }}>+</button></span>
                     </div>
                   </div>
                 </div>
-                <div className={basketStyle.basket__main__products__bottom__item}>
-                  <p style={{marginBottom:"20px",fontSize:"12px"}}>Sold and shipped by <strong>Walmart</strong></p>
-                  <div className={basketStyle.basket__main__products__bottom__item__content}>
-                    <div className={basketStyle.basket__main__products__bottom__item__left}>
-                      <img src="https://i5.walmartimages.com/asr/52559c05-8ae0-4f9a-833e-e47f804f644a.ce427b265eceac9547366a33b2d54245.jpeg?odnHeight=96&odnWidth=96&odnBg=FFFFFF" alt="" />
-                    </div>
-                    <div className={basketStyle.basket__main__products__bottom__item__right}>
-                      <p>Frito-Lay Snacks Classic Mix Variety Pack, 42</p>
-                      <span style={{fontWeight:"700"}}>$20.46</span>
-                      <span><img src="https://i5.walmartimages.com/dfw/63fd9f59-e685/7e6c8c3a-3ba7-437a-a066-de3ad3a6a15a/v1/roundReturn.svg" alt="" />Free 90-day returns</span>
-                      <span> <img src="https://i5.walmartimages.com/dfw/63fd9f59-fc02/1be09571-b0a8-4894-8001-e7a71e306c46/v1/gifting-icon.svg" alt="" /> Gift Eligible</span>
-                    </div>
-                  </div>
-                </div>
-                <div className={basketStyle.basket__main__products__bottom__item}>
-                  <p style={{marginBottom:"20px",fontSize:"12px"}}>Sold and shipped by <strong>Walmart</strong></p>
-                  <div className={basketStyle.basket__main__products__bottom__item__content}>
-                    <div className={basketStyle.basket__main__products__bottom__item__left}>
-                      <img src="https://i5.walmartimages.com/asr/52559c05-8ae0-4f9a-833e-e47f804f644a.ce427b265eceac9547366a33b2d54245.jpeg?odnHeight=96&odnWidth=96&odnBg=FFFFFF" alt="" />
-                    </div>
-                    <div className={basketStyle.basket__main__products__bottom__item__right}>
-                      <p>Frito-Lay Snacks Classic Mix Variety Pack, 42</p>
-                      <span style={{fontWeight:"700"}}>$20.46</span>
-                      <span><img src="https://i5.walmartimages.com/dfw/63fd9f59-e685/7e6c8c3a-3ba7-437a-a066-de3ad3a6a15a/v1/roundReturn.svg" alt="" />Free 90-day returns</span>
-                      <span> <img src="https://i5.walmartimages.com/dfw/63fd9f59-fc02/1be09571-b0a8-4894-8001-e7a71e306c46/v1/gifting-icon.svg" alt="" /> Gift Eligible</span>
-                    </div>
-                  </div>
-                </div>
+ 
 
               </div>
             </div>

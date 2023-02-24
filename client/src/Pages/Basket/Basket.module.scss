@@ -5,14 +5,14 @@
 
 .basket {
 
-    &__cart{
+    &__cart {
         h2 {
             padding-top: 45px;
             display: flex;
             align-items: center;
             gap: 10px;
             font-size: 22px;
-    
+
             span {
                 font-weight: 400;
                 font-size: 20px;
@@ -63,24 +63,32 @@
         }
     }
 
-    .basket__main{
+    .basket__main {
         margin-top: 24px;
         display: flex;
         justify-content: space-between;
         gap: 30px;
         margin-bottom: 248px;
 
-        &__checkout{
+
+        @media(max-width: 1200px) {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        &__checkout {
             height: 263px;
             box-shadow: 0 1px 2px 1px #00000026;
-            border-radius: 8px;    
-            &__top{
+            border-radius: 8px;
+
+            &__top {
                 border: 1px solid #f1f1f2;
                 border-top-right-radius: 8px;
                 border-top-left-radius: 8px;
             }
-            button{
-                width: 350px;
+
+            button {
+                width: 330px;
                 padding: 10px;
                 background-color: #0071dc;
                 color: white;
@@ -90,47 +98,51 @@
                 font-size: 14px;
                 font-weight: 700;
 
-                &:hover{
+                &:hover {
                     background-color: #004f9a;
                 }
 
-                &:active{
+                &:active {
                     background-color: #002d58;
                 }
 
             }
 
-            &__bottom{
+            &__bottom {
                 padding: 16px;
-                & div:nth-child(2){
+
+                & div:nth-child(2) {
                     border-bottom: 1px solid #f1f1f2;
                     padding-bottom: 25px;
                 }
-                div{
+
+                div {
                     display: flex;
                     justify-content: space-between;
                     margin: 8px 0px;
 
-                    & span:first-child{
+                    & span:first-child {
                         font-size: 13px;
                         display: flex;
                         align-items: center;
                         gap: 5px;
                         opacity: .7;
 
-                        h5{
+                        h5 {
                             font-size: 15px;
-                            opacity: 1!important;
+                            opacity: 1 !important;
                         }
                     }
                 }
             }
         }
-        &__products{
+
+        &__products {
             box-shadow: 0 1px 2px 1px #00000026;
             border-radius: 8px;
             width: 100%;
-            &__top{
+
+            &__top {
                 display: flex;
                 padding: 24px;
                 background-color: #f2f8fd;
@@ -138,68 +150,144 @@
                 border-top-left-radius: 8px;
 
 
-                &__left{
+                &__left {
                     padding-right: 24px;
-                    
 
-                    img{
+
+                    img {
                         height: 57px;
                     }
                 }
 
-                &__right{
+                &__right {
                     width: 100%;
-                    & div:first-child{
+
+                    & div:first-child {
                         padding-bottom: 16px;
                         border-bottom: 1px solid #babbbe;
                         display: block;
                     }
 
-                    & div:last-child{
+                    & div:last-child {
                         padding-top: 14px;
                         font-size: 13px;
                         display: flex;
-                        gap:5px;
+                        gap: 5px;
 
-                        p{
+                        p {
                             font-weight: 700;
                         }
-                    }
-                    h2{
-                        margin-bottom: 5px;
-                        font-size: 22px;
+
+                        @media(max-width: 480px) {
+                            display: none;
+                        }
                     }
 
-                    span{
+                    h2 {
+                        margin-bottom: 5px;
+                        font-size: 22px;
+
+                        @media(max-width: 480px) {
+                            font-size: 14px;
+                        }
+                    }
+
+                    span {
                         text-decoration: underline;
                         cursor: pointer;
 
-                        &:hover{
+                        &:hover {
                             text-decoration: none;
                         }
                     }
                 }
             }
 
-            &__bottom{
+            &__bottom {
                 padding: 24px;
-                &__item{
+
+                &__item {
                     padding: 20px 0px;
-                    &__content{
+
+                    .remove {
+                        cursor: pointer;
+                        text-decoration: underline;
+                        font-size: 14px;
+
+                        &:hover {
+                            text-decoration: none;
+                        }
+                    }
+
+                    &__content {
                         display: flex;
                         align-items: center;
                         gap: 20px;
 
-                        .basket__main__products__bottom__item__right{
+                        .basket__main__products__bottom__item__right {
                             display: flex;
                             flex-direction: column;
                             gap: 10px;
 
-                            & span:nth-child(3),& span:nth-child(4){
+                            p{
+                                @media(max-width:480px){
+                                    font-size: 13px;
+                                }
+                            }
+
+                            & span:nth-child(3),
+                            & span:nth-child(4) {
                                 font-size: 14px;
                                 display: flex;
                                 align-items: center;
                                 gap: 3px;
+
+                                @media(max-width:480px){
+                                    font-size: 12px;
+                                }
+                            }
+
+                            & span:nth-child(5) {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                border: 1px solid black;
+                                border-radius: 8px;
+                                width: 150px;
+                                height: 30px;
+
+                                @media(max-width:480px){
+                                    width: 100px;
+                                }
+
+                                button {
+                                    background-color: white;
+                                    width: 24px;
+                                    height: 24px;
+                                    border-radius: 50%;
+                                    cursor: pointer;
+                                    border: none;
+                                    font-size: 18px;
+                                    font-weight: 700;
+
+                                    &:hover {
+                                        background-color: #74767c;
+                                        color: white;
+                                    }
+                                }
+
+                                input::-webkit-outer-spin-button,
+                                input::-webkit-inner-spin-button {
+                                    -webkit-appearance: none;
+                                    margin: 0;
+                                }
+
+                                input{
+                                    width: 50px;
+                                    text-align: center;
+                                    border: none;
+                                    outline: none;
+                                }
                             }
                         }
                     }

@@ -5,10 +5,11 @@ import axios from "axios";
 import * as Yup from "yup";
 import { useRef } from "react";
 import { Link } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 const Register = () => {
-
+  const navigate = useNavigate()
 
   const nameInp = useRef();
   const surnameInp = useRef();
@@ -119,8 +120,18 @@ const Register = () => {
             <p style={{ color: "#74767c" }}>By clicking Create Account, you acknowledge you have read and agreed to our <a href="https://www.walmart.com/help/article/walmart-com-terms-of-use/3b75080af40340d6bbd596f116fae5a0" style={{ color: "#2e2f32" }}>Terms of Use</a> and <a href="https://corporate.walmart.com/privacy-security/walmart-privacy-notice" style={{ color: "#2e2f32" }}>Privacy Policy</a>.</p>
 
 
-            <button type="submit" onClick={()=>{
-              window.location.href="/login"
+            <button type="submit" onClick={() => {
+
+              
+              if (formik.values.email && formik.values.name && formik.values.surname && formik.values.password) {
+                let newUser = {
+                  ...formik.values
+                }
+                console.log(newUser);
+                // window.location.href = "/login"
+                navigate("/login")
+                
+              }
             }}>Create Account</button>
           </form>
         </div>
