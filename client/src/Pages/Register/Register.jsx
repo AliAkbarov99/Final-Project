@@ -7,6 +7,7 @@ import { useRef } from "react";
 import { Link } from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
 import { Helmet, HelmetProvider } from 'react-helmet-async';
+import {Toaster,toast} from 'react-hot-toast'
 
 const Register = () => {
   const navigate = useNavigate()
@@ -30,9 +31,33 @@ const Register = () => {
       password: "",
     },
     validationSchema: UserSchema,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: async (values) => {
+      
 
+      if (formik.values.email && formik.values.name && formik.values.surname && formik.values.password) {
+        
+        axios.post("http://localhost:8080/users/register", {
+          name: values.name,
+          surname: values.surname,
+          email: values.email,
+          password: values.password
+        }).catch((error)=>{
+          toast.error("User already exists!")
+        })
+        
+        
+        
+        // then((response) => {
+        //   // toast.success({response})
+        //   try {
+            
+        //   } catch (error) {
+        //     console.log(error);
+        //   }
+        // })
+
+        // window.location.href = "/login"
+      }
       nameInp.current.value = "";
       surnameInp.current.value = "";
       emailInp.current.value = "";
@@ -122,16 +147,8 @@ const Register = () => {
 
             <button type="submit" onClick={() => {
 
-              
-              if (formik.values.email && formik.values.name && formik.values.surname && formik.values.password) {
-                let newUser = {
-                  ...formik.values
-                }
-                console.log(newUser);
-                // window.location.href = "/login"
-                navigate("/login")
-                
-              }
+
+
             }}>Create Account</button>
           </form>
         </div>
@@ -148,6 +165,7 @@ const Register = () => {
           </div>
         </div>
       </div>
+      <Toaster/>
     </>
   )
 }
