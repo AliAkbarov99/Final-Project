@@ -18,11 +18,17 @@ import { HiBars3 } from 'react-icons/hi2'
 import { AiOutlineLaptop } from 'react-icons/ai'
 import { CiApple } from 'react-icons/ci'
 import { MdOutlineChair } from 'react-icons/md'
+import { useSelector,useDispatch } from 'react-redux'
+import {logout} from '../../Redux/Slice/LoginSlice'
+
 
 import { Link } from 'react-router-dom'
 
 
 const Navbar = () => {
+  const dispatch = useDispatch()
+  const login = useSelector(state=>state.login.login)
+  console.log(login);
   const [sidebar, setSidebar] = useState(false)
   const [size, setSize] = useState(false)
   const [delivery, setDelivery] = useState(false)
@@ -35,6 +41,11 @@ const Navbar = () => {
       setSize(false)
     }
   }
+
+  // if(login){
+  //   let loggedUser = 
+  //   console.log(loggedUser);
+  // }
   return (
     <div className={navStyle.navbar} id="navbar">
       <div className={navStyle.navbar__top}>
@@ -75,14 +86,16 @@ const Navbar = () => {
               </div>
             </div>
           </Link>
-          <Link to="/login">
+          <Link to="/login" onClick={()=>{
+            dispatch(logout())
+          }}>
             <div className={navStyle.navbar__top__right__account}>
               <span>
                 <FaRegUser />
               </span>
-              <div>
-                <p>Sign In</p>
-                <h5>Account</h5>
+              <div style={{width:"50px"}}>
+                <p> {login ? (`Hi, ${localStorage.getItem("logged user name")+" "+localStorage.getItem("logged user surname")[0]}`) : "Sign In"} </p>
+                <h5>{login ? "Log out" : "Account"}</h5>
               </div>
             </div>
           </Link>
@@ -149,7 +162,9 @@ const Navbar = () => {
           <img src="https://seeklogo.com/images/W/walmart-spark-logo-57DC35C86C-seeklogo.com.png" alt="" onClick={() => {
             setSidebar(false)
           }} />
-          <button>Sign in or create account</button>
+          <Link to="/login" onClick={()=>{
+            dispatch(logout())
+          }}><button>{login ? "Log out" : "Sign in or create account"}</button></Link>
         </div>
         <div className={navStyle.navbar__sidebar__bottom}>
           <ul>

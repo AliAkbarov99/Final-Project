@@ -1,0 +1,41 @@
+#admin__navbar {
+    background-color: #0071dc;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 100px;
+
+    .admin__navbar__left {
+        a {
+            text-decoration: none;
+            color: white;
+            font-size: 30px;
+            font-weight: 700;
+        }
+
+    }
+
+    .admin__navbar__right {
+        ul {
+            display: flex;
+            align-items: center;
+            gap: 70px;
+
+            list-style-type: none;
+
+            a {
+                text-decoration: none;
+                color: white;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+
+                &:focus {
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+
+}

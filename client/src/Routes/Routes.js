@@ -10,6 +10,7 @@ import Login from '../Pages/Login/Login'
 import Register from '../Pages/Register/Register'
 import Wishlist from '../Pages/Wishlist/Wishlist'
 import Basket from '../Pages/Basket/Basket'
+import Admin from '../Pages/Admin/Admin'
 
 export const Routes = createBrowserRouter([
     {
@@ -58,6 +59,10 @@ export const Routes = createBrowserRouter([
     {
         path:"/register",
         element:<Register/>
+    },
+    {
+        path:"/admin",
+        element:<Admin/>
     }
 ])
 

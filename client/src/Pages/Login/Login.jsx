@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import loginStyle from "./Login.module.scss";
 import { useFormik } from "formik";
 import axios from "axios";
@@ -6,18 +6,22 @@ import * as Yup from "yup";
 import { useRef } from "react";
 import { Link } from 'react-router-dom'
 import { Helmet, HelmetProvider } from 'react-helmet-async';
+import { useDispatch } from 'react-redux'
+import {login} from '../../Redux/Slice/LoginSlice'
+import { useNavigate } from 'react-router-dom';
+import {Toaster,toast} from 'react-hot-toast'
 
 const Login = () => {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const [data,setData] = useState(null)
 
   const emailInp = useRef();
   const passwordInp = useRef();
-  // const UserSchema = Yup.object().shape({
-  //   name: Yup.string().min(2, "Too Short!").max(10, "Too Long!").required("First name is required!"),
-  //   surname: Yup.string().min(2, "Too Short!").max(10, "Too Long!").required("Last name is required!"),
-  //   email: Yup.string().email("Invalid email").required("Email is required!"),
-  //   password: Yup.string().min(8, "Too short!").required("Password is required!")
-  // });
-
+  const UserSchema = Yup.object().shape({
+    email: Yup.string().email("Invalid email").required("Email is required!"),
+    password: Yup.string().required("Password is required!")
+  });
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -25,21 +29,27 @@ const Login = () => {
       email: "",
       password: "",
     },
-    // validationSchema: UserSchema,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-
+    validationSchema: UserSchema,
+    onSubmit: async (values) => {
+     await axios.post("http://localhost:8080/users/login",values).then((response)=>{
+        setData(response.data.user)
+        console.log(response.data.user);
+        dispatch(login(response.data))
+      })
+      if(localStorage.getItem("token")){
+      toast.success("Login successfully!")
       emailInp.current.value = "";
       passwordInp.current.value = "";
+      
+      setTimeout(() => {
+        navigate("/")
+      }, "3000")
+      }
+      else{
+        toast.error("Email or password is incorrect!")
+      }
     },
   });
-
-
-
-
-
-
-
   return (
     <>
       <HelmetProvider>
@@ -95,8 +105,8 @@ const Login = () => {
 
 
             <button type="submit" onClick={() => {
-              window.location.href = '/register'
-            }}>Create Account</button>
+              
+            }}>Log in</button>
           </form>
         </div>
         <div className={loginStyle.footer}>
@@ -111,6 +121,7 @@ const Login = () => {
             </div>
           </div>
         </div>
+        <Toaster/>
       </div>
     </>
   )
