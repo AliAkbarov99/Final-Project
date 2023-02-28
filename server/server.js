@@ -4,6 +4,8 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const UserRouter = require('./src/Routes/UserRoutes')
 const TechRouter = require("./src/Routes/TechRoutes")
+const UserModel = require('./src/Models/UserModel')
+const TechModel = require('./src/Models/TechModel')
 const PORT = 8080
 app.use(cors())
 app.use(express())
@@ -17,6 +19,19 @@ app.use('/users', UserRouter)
 app.use('/tech', TechRouter)
 app.listen(PORT, () => {
     console.log("Connected on:", PORT);
+})
+
+app.get("/users/get",(req,res)=>{
+    UserModel.find(null,"name surname email").exec((error,data)=>{
+        if(error) return res.send(error)
+        res.status(200).send(data)
+    })
+})
+app.get("/tech/get",(req,res)=>{
+    TechModel.find(null,"name price image description").exec((error,data)=>{
+        if(error) return res.send(error)
+        res.status(200).send(data)
+    })
 })
 
 

@@ -7,7 +7,7 @@ import { useRef } from "react";
 import { Link } from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import {Toaster,toast} from 'react-hot-toast'
+import { Toaster, toast } from 'react-hot-toast'
 
 const Register = () => {
   const navigate = useNavigate()
@@ -32,40 +32,29 @@ const Register = () => {
     },
     validationSchema: UserSchema,
     onSubmit: async (values) => {
-      
-
-      if (formik.values.email && formik.values.name && formik.values.surname && formik.values.password) {
-        
         axios.post("http://localhost:8080/users/register", {
           name: values.name,
           surname: values.surname,
           email: values.email,
           password: values.password
-        }).catch((error)=>{
-          toast.error("User already exists!")
-        })
-        
-        
-        
-        // then((response) => {
-        //   // toast.success({response})
-        //   try {
+        }).then((res) => {
+          if(res){
+            toast.success("Register successfully!")
+            nameInp.current.value = "";
+            surnameInp.current.value = "";
+            emailInp.current.value = "";
+            passwordInp.current.value = "";
             
-        //   } catch (error) {
-        //     console.log(error);
-        //   }
-        // })
-
-        // window.location.href = "/login"
-      }
-      nameInp.current.value = "";
-      surnameInp.current.value = "";
-      emailInp.current.value = "";
-      passwordInp.current.value = "";
+            setTimeout(() => {
+              navigate("/login")
+            }, "3000")
+          }
+          else{
+            toast.error("User already exists!")
+          }
+        })
     },
   });
-
-
   return (
     <>
       <HelmetProvider>
@@ -165,7 +154,7 @@ const Register = () => {
           </div>
         </div>
       </div>
-      <Toaster/>
+      <Toaster />
     </>
   )
 }

@@ -46,9 +46,15 @@ const register = async (req, res) => {
         await newUser.save()
         res.status(200).json({ user: newUser, token: token })
     } catch (error) {
-        console.log(error);
-        res.status(500).json({ message: "Something went wrong" })
+        res.status(500).json({ message: "Something went wrong" ,error})
     }
 }
+
+// const getUsers = async (req,res) => {
+//     UserModel.find(null,"name surname email").exec((error,data)=>{
+//         if(error) return res.send(error)
+//         res.send(201).json({message:"Successfully!",data})
+//     })
+// }
 
 module.exports = { login, register }  
