@@ -32,27 +32,27 @@ const Register = () => {
     },
     validationSchema: UserSchema,
     onSubmit: async (values) => {
-        axios.post("http://localhost:8080/users/register", {
+        try {
+          axios.post("http://localhost:8080/users/register", {
           name: values.name,
           surname: values.surname,
           email: values.email,
           password: values.password
-        }).then((res) => {
-          if(res){
+        }).then((response) => { 
             toast.success("Register successfully!")
             nameInp.current.value = "";
             surnameInp.current.value = "";
             emailInp.current.value = "";
             passwordInp.current.value = "";
-            
             setTimeout(() => {
               navigate("/login")
             }, "3000")
-          }
-          else{
-            toast.error("User already exists!")
-          }
+        }).catch(error=>{
+          toast.error("User already exists!")
         })
+        } catch (error) {
+          toast.error("User already exists!")
+        }
     },
   });
   return (

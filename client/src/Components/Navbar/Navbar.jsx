@@ -75,7 +75,7 @@ const Navbar = () => {
           </div>
         </div>
         <div className={navStyle.navbar__top__right}>
-          <Link to="/wishlist">
+          
             <div className={navStyle.navbar__top__right__wish}>
               <span>
                 <AiOutlineHeart />
@@ -85,7 +85,7 @@ const Navbar = () => {
                 <h5>My Items</h5>
               </div>
             </div>
-          </Link>
+          
           <Link to="/login" onClick={()=>{
             dispatch(logout())
           }}>

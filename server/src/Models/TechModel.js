@@ -14,7 +14,9 @@ const TechSchema = new mongoose.Schema({
     },
     description:{
         type : String,
-        
+    },
+    count:{
+        type:Number,
     }
 })
 

@@ -18,10 +18,6 @@ const UserSchema = new mongoose.Schema({
         required : true
     },
     basket:[
-        {
-            type:mongoose.Schema.Types.ObjectId,
-            ref:"Tech"
-        }
     ]
 })
 

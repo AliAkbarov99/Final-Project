@@ -224,6 +224,17 @@
                         align-items: center;
                         gap: 20px;
 
+                        div{
+                           img{
+                            width: 96px;
+                        } 
+                        } 
+                        span{
+                            img{
+                                width: 15px;
+                            }
+                        }
+
                         .basket__main__products__bottom__item__right {
                             display: flex;
                             flex-direction: column;

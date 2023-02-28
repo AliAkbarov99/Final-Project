@@ -1,18 +1,35 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import techStyle from './Tech.module.scss'
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import {Link} from 'react-router-dom'
-
 import { BsHeart } from 'react-icons/bs'
 import { AiFillStar } from 'react-icons/ai'
 import { AiOutlineStar } from 'react-icons/ai'
 import { BsPlusLg } from 'react-icons/bs'
-
-
+import axios from 'axios'
+import { addBasket } from '../../Redux/Slice/BasketSlice';
+import { v4 as uuidv4 } from 'uuid';
+import { useDispatch } from 'react-redux';
 
 const Tech = () => {
+  const dispatch = useDispatch()
+  const[data,setData] = useState([])
+  useEffect(()=>{
+    axios.get("http://localhost:8080/tech/get").then((response)=>{
+      setData(response.data)
+    })
+  },[])
+  function sortProducts(data){
+ 
+    let unSortedData=[]
+    if(data[0].price>data[1].price ){
+      unSortedData= data.sort((a,b)=>a.price-b.price)
+    }else
+    unSortedData= data.sort((a,b)=>b.price-a.price)
+    setData([...unSortedData])
+  
+}
   return (
-
     <>
       <HelmetProvider>
         <Helmet>
@@ -32,19 +49,25 @@ const Tech = () => {
               <p>Ship free, no order min* <span>As often as you need.</span></p>
             </div>
             <div className={techStyle.tech__header__sort}>
-              <button>Sort by price</button>
+              <button onClick={()=>{
+                sortProducts(data)
+              }}>Sort by price</button>
             </div>
           </div>
         </div>
-
         <div className={techStyle.tech__laptops}>
           <div className={techStyle.container}>
-            <div className={techStyle.tech__laptops__card}>
+            {data && data.map(item=>{
+              return <div key={item._id} className={techStyle.tech__laptops__card}>
               <div><BsHeart/></div>
-              <div><Link to="/detail"><img src="https://i5.walmartimages.com/asr/086a4dd0-276e-4622-92cf-51a9c04023f8.b7e975ec378dcf412641c69b605d858a.jpeg?odnHeight=392&odnWidth=290&odnBg=FFFFFF" alt="" /></Link></div>
-              <div><button><BsPlusLg/> Add</button></div>
-              <div><span>$899.00</span></div>
-              <p>Acer Nitro 5 , 15.6" Full HD IPS 144Hz Display, 11th Gen Intel Core i5-11400H, NVIDIA GeForce RTX 3050Ti Laptop GPU, 16GB DDR4 ...</p>
+              <div><Link to="/detail"><img src={item.image} alt="product image" /></Link></div>
+              <div><button onClick={()=>{
+                dispatch(addBasket({
+                  ...item
+                }))
+              }}><BsPlusLg/> Add</button></div>
+              <div><span>${item.price}.00</span></div>
+              <p>{item.description}</p>
               <div>
                 <AiFillStar/>
                 <AiFillStar/>
@@ -53,91 +76,7 @@ const Tech = () => {
                 <AiOutlineStar/>
               </div>
             </div>
-            <div className={techStyle.tech__laptops__card}>
-              <div><BsHeart/></div>
-              <div><Link to="/detail"><img src="https://i5.walmartimages.com/asr/086a4dd0-276e-4622-92cf-51a9c04023f8.b7e975ec378dcf412641c69b605d858a.jpeg?odnHeight=392&odnWidth=290&odnBg=FFFFFF" alt="" /></Link></div>
-              <div><button><BsPlusLg/> Add</button></div>
-              <div><span>$899.00</span></div>
-              <p>Acer Nitro 5 , 15.6" Full HD IPS 144Hz Display, 11th Gen Intel Core i5-11400H, NVIDIA GeForce RTX 3050Ti Laptop GPU, 16GB DDR4 ...</p>
-              <div>
-                <AiFillStar/>
-                <AiFillStar/>
-                <AiFillStar/>
-                <AiFillStar/>
-                <AiOutlineStar/>
-              </div>
-            </div>
-            <div className={techStyle.tech__laptops__card}>
-              <div><BsHeart/></div>
-              <div><Link to="/detail"><img src="https://i5.walmartimages.com/asr/086a4dd0-276e-4622-92cf-51a9c04023f8.b7e975ec378dcf412641c69b605d858a.jpeg?odnHeight=392&odnWidth=290&odnBg=FFFFFF" alt="" /></Link></div>
-              <div><button><BsPlusLg/> Add</button></div>
-              <div><span>$899.00</span></div>
-              <p>Acer Nitro 5 , 15.6" Full HD IPS 144Hz Display, 11th Gen Intel Core i5-11400H, NVIDIA GeForce RTX 3050Ti Laptop GPU, 16GB DDR4 ...</p>
-              <div>
-                <AiFillStar/>
-                <AiFillStar/>
-                <AiFillStar/>
-                <AiFillStar/>
-                <AiOutlineStar/>
-              </div>
-            </div>
-            <div className={techStyle.tech__laptops__card}>
-              <div><BsHeart/></div>
-              <div><Link to="/detail"><img src="https://i5.walmartimages.com/asr/086a4dd0-276e-4622-92cf-51a9c04023f8.b7e975ec378dcf412641c69b605d858a.jpeg?odnHeight=392&odnWidth=290&odnBg=FFFFFF" alt="" /></Link></div>
-              <div><button><BsPlusLg/> Add</button></div>
-              <div><span>$899.00</span></div>
-              <p>Acer Nitro 5 , 15.6" Full HD IPS 144Hz Display, 11th Gen Intel Core i5-11400H, NVIDIA GeForce RTX 3050Ti Laptop GPU, 16GB DDR4 ...</p>
-              <div>
-                <AiFillStar/>
-                <AiFillStar/>
-                <AiFillStar/>
-                <AiFillStar/>
-                <AiOutlineStar/>
-              </div>
-            </div>
-            <div className={techStyle.tech__laptops__card}>
-              <div><BsHeart/></div>
-              <div><Link to="/detail"><img src="https://i5.walmartimages.com/asr/086a4dd0-276e-4622-92cf-51a9c04023f8.b7e975ec378dcf412641c69b605d858a.jpeg?odnHeight=392&odnWidth=290&odnBg=FFFFFF" alt="" /></Link></div>
-              <div><button><BsPlusLg/> Add</button></div>
-              <div><span>$899.00</span></div>
-              <p>Acer Nitro 5 , 15.6" Full HD IPS 144Hz Display, 11th Gen Intel Core i5-11400H, NVIDIA GeForce RTX 3050Ti Laptop GPU, 16GB DDR4 ...</p>
-              <div>
-                <AiFillStar/>
-                <AiFillStar/>
-                <AiFillStar/>
-                <AiFillStar/>
-                <AiOutlineStar/>
-              </div>
-            </div>
-            <div className={techStyle.tech__laptops__card}>
-              <div><BsHeart/></div>
-              <div><Link to="/detail"><img src="https://i5.walmartimages.com/asr/086a4dd0-276e-4622-92cf-51a9c04023f8.b7e975ec378dcf412641c69b605d858a.jpeg?odnHeight=392&odnWidth=290&odnBg=FFFFFF" alt="" /></Link></div>
-              <div><button><BsPlusLg/> Add</button></div>
-              <div><span>$899.00</span></div>
-              <p>Acer Nitro 5 , 15.6" Full HD IPS 144Hz Display, 11th Gen Intel Core i5-11400H, NVIDIA GeForce RTX 3050Ti Laptop GPU, 16GB DDR4 ...</p>
-              <div>
-                <AiFillStar/>
-                <AiFillStar/>
-                <AiFillStar/>
-                <AiFillStar/>
-                <AiOutlineStar/>
-              </div>
-            </div>
-            <div className={techStyle.tech__laptops__card}>
-              <div><BsHeart/></div>
-              <div><Link to="/detail"><img src="https://i5.walmartimages.com/asr/086a4dd0-276e-4622-92cf-51a9c04023f8.b7e975ec378dcf412641c69b605d858a.jpeg?odnHeight=392&odnWidth=290&odnBg=FFFFFF" alt="" /></Link></div>
-              <div><button><BsPlusLg/> Add</button></div>
-              <div><span>$899.00</span></div>
-              <p>Acer Nitro 5 , 15.6" Full HD IPS 144Hz Display, 11th Gen Intel Core i5-11400H, NVIDIA GeForce RTX 3050Ti Laptop GPU, 16GB DDR4 ...</p>
-              <div>
-                <AiFillStar/>
-                <AiFillStar/>
-                <AiFillStar/>
-                <AiFillStar/>
-                <AiOutlineStar/>
-              </div>
-            </div>
-
+            })}
           </div>
         </div>
       </div>

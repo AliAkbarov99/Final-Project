@@ -31,7 +31,8 @@ const Login = () => {
     },
     validationSchema: UserSchema,
     onSubmit: async (values) => {
-     await axios.post("http://localhost:8080/users/login",values).then((response)=>{
+     try {
+      await axios.post("http://localhost:8080/users/login",values).then((response)=>{
         setData(response.data.user)
         console.log(response.data.user);
         dispatch(login(response.data))
@@ -45,9 +46,12 @@ const Login = () => {
         navigate("/")
       }, "3000")
       }
-      else{
+      else if(!localStorage.getItem("token")){
         toast.error("Email or password is incorrect!")
       }
+     } catch (error) {
+      toast.error("Email or password is incorrect!")
+     }
     },
   });
   return (

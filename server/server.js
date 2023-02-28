@@ -21,18 +21,24 @@ app.listen(PORT, () => {
     console.log("Connected on:", PORT);
 })
 
+//Get Users
 app.get("/users/get",(req,res)=>{
     UserModel.find(null,"name surname email").exec((error,data)=>{
         if(error) return res.send(error)
         res.status(200).send(data)
     })
 })
+
+//Get Products
 app.get("/tech/get",(req,res)=>{
     TechModel.find(null,"name price image description").exec((error,data)=>{
         if(error) return res.send(error)
         res.status(200).send(data)
     })
 })
+
+
+
 
 
 
