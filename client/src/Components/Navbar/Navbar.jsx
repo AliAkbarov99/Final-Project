@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import navStyle from './Navbar.module.scss'
 import { AiOutlineAppstore } from 'react-icons/ai'
 import { RiApps2Line } from 'react-icons/ri'
@@ -26,6 +26,7 @@ import { Link } from 'react-router-dom'
 
 
 const Navbar = () => {
+  const basketArr = useSelector(state=>state.basket.basket)
   const dispatch = useDispatch()
   const login = useSelector(state=>state.login.login)
   console.log(login);
@@ -41,11 +42,15 @@ const Navbar = () => {
       setSize(false)
     }
   }
-
-  // if(login){
-  //   let loggedUser = 
-  //   console.log(loggedUser);
+  // const [cartCount,setCartCount] = useState(0)
+  // function calculateCount(arr){
+  //   for(let i=0;i<arr.length;i++){
+  //     setCartCount(cartCount+parseInt(arr[i].count)) 
+  //   }
   // }
+  // useEffect(()=>{
+  //   calculateCount(basketArr)
+  // },[basketArr])
   return (
     <div className={navStyle.navbar} id="navbar">
       <div className={navStyle.navbar__top}>
@@ -102,8 +107,8 @@ const Navbar = () => {
           <Link to="/basket">
             <div className={navStyle.navbar__top__right__basket}>
               <AiOutlineShoppingCart />
-              <p>$0.00</p>
-              <span>0</span>
+              <p>Cart</p>
+              
             </div>
           </Link>
         </div>

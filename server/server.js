@@ -37,6 +37,21 @@ app.get("/tech/get",(req,res)=>{
     })
 })
 
+//Delete User
+app.delete("/user/:id",(req,res)=>{
+    UserModel.findByIdAndDelete(req.params.id).exec((error,user)=>{
+        if(error) return res.send(error)
+        res.send({message:"User deleted!",user})
+    })
+})
+//Delete Product
+app.delete("/tech/:id",(req,res)=>{
+    TechModel.findByIdAndDelete(req.params.id).exec((error,product)=>{
+        if(error) return res.send(error)
+        res.send({message:"Product deleted!",product})
+    })
+})
+
 
 
 

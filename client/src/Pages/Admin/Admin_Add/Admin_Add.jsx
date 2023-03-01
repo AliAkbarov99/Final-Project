@@ -32,7 +32,8 @@ const Admin_Add = () => {
           name: values.name,
           price: values.price,
           image: values.image,
-          description: values.desc
+          description: values.desc,
+          count:1
         }).then((response) => {
           toast.success("Product added successfully!")
           nameInp.current.value = "";

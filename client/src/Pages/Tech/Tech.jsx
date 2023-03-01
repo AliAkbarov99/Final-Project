@@ -60,10 +60,11 @@ const Tech = () => {
             {data && data.map(item=>{
               return <div key={item._id} className={techStyle.tech__laptops__card}>
               <div><BsHeart/></div>
-              <div><Link to="/detail"><img src={item.image} alt="product image" /></Link></div>
+              <div><img src={item.image} alt="product image" /></div>
               <div><button onClick={()=>{
                 dispatch(addBasket({
-                  ...item
+                  ...item,
+                  count:1
                 }))
               }}><BsPlusLg/> Add</button></div>
               <div><span>${item.price}.00</span></div>

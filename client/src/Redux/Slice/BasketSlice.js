@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const BasketSlice = createSlice({
     name: 'basket',
@@ -15,27 +16,15 @@ const BasketSlice = createSlice({
             else {
                 state.basket.push(action.payload)
             }
-            console.log(state.basket);
         },
-        increaseCount:(state,action)=>{
-            let element = state.basket.find(x => x._id == action.payload._id)
-            let indexOfTarget = state.basket.indexOf(element)
-            state.basket[indexOfTarget].count = state.basket[indexOfTarget].count +1
+        clearBasket: (state,action) =>{
+            state.basket = []
+            action.payload = []
         },
-        decreaseCount:(state,action)=>{
-            let element = state.basket.find(x => x._id == action.payload._id)
-            let indexOfTarget = state.basket.indexOf(element)
-            if(state.basket[indexOfTarget].count == 1){
-                state.basket.splice(indexOfTarget,1)
-            }
-            else{
-                state.basket[indexOfTarget].count = state.basket[indexOfTarget].count - 1
-            }
-            
+        removeItem: (state,action) => {
+            state.basket.filter(x=>x._id!==action.payload._id)
         }
     }
 })
-
-
-export const { addBasket,decreaseCount,increaseCount } = BasketSlice.actions
+export const { addBasket,clearBasket,removeItem } = BasketSlice.actions
 export default BasketSlice;

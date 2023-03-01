@@ -34,7 +34,6 @@ const Login = () => {
      try {
       await axios.post("http://localhost:8080/users/login",values).then((response)=>{
         setData(response.data.user)
-        console.log(response.data.user);
         dispatch(login(response.data))
       })
       if(localStorage.getItem("token")){

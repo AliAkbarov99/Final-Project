@@ -39,7 +39,10 @@ const Admin_Users = () => {
       key: 'action',
       render: (_, record) => (
         <Space size="middle">
-          <button style={delBtn}>Delete</button>
+          <button style={delBtn} onClick={() => {
+            axios.delete(`http://localhost:8080/users/${record._id}`)
+            setData(data.filter(x => x._id !== record._id))
+          }}>Delete</button>
         </Space>
       ),
     },
